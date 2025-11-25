@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evergreen Empire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-black: #000000;
+            --primary-white: #ffffff;
+            --accent-red: #e50914;
+            --neutral-grey: #2a2a2a;
+            --light-grey: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent-red);
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 14px;
+            padding: 6px 0;
+            display: block;
+            cursor: pointer;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--accent-red);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--primary-black);
+            min-width: 180px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+        
+        .dropdown li {
+            margin: 0;
+            padding: 6px 15px;
+        }
+        
+        nav li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding: 40px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content ul {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .tab-content li {
+            padding: 12px 20px;
+            background-color: var(--light-grey);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-content li:hover {
+            background-color: #e0e0e0;
+            transform: translateX(5px);
+        }
+        
+        .tab-content a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tab-content i {
+            color: var(--accent-red);
+        }
+        
+        /* Hero Section with Video Background */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--primary-white);
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: var(--primary-white);
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #b80710;
+            transform: translateY(-2px);
+        }
+        
+        /* Trending Video Section */
+        .trending-video {
+            padding: 70px 0;
+            background-color: var(--light-grey);
+        }
+        
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Platforms Section */
+        .platforms {
+            padding: 70px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .platforms-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 10px 0 30px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--neutral-grey) var(--light-grey);
+        }
+        
+        .platforms-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .platforms-container::-webkit-scrollbar-track {
+            background: var(--light-grey);
+            border-radius: 4px;
+        }
+        
+        .platforms-container::-webkit-scrollbar-thumb {
+            background: var(--neutral-grey);
+            border-radius: 4px;
+        }
+        
+        .platform-card {
+            flex: 0 0 auto;
+            width: 280px;
+            scroll-snap-align: start;
+            background-color: var(--primary-white);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .platform-image {
+            height: 160px;
+            overflow: hidden;
+        }
+        
+        .platform-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .platform-card:hover .platform-image img {
+            transform: scale(1.05);
+        }
+        
+        .platform-content {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .platform-content h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        /* Partners Section */
+        .partners {
+            padding: 70px 0;
+            background-color: var(--light-grey);
+            text-align: center;
+        }
+        
+        .partners-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 10px 0 30px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--neutral-grey) var(--light-grey);
+        }
+        
+        .partners-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .partners-container::-webkit-scrollbar-track {
+            background: var(--light-grey);
+            border-radius: 4px;
+        }
+        
+        .partners-container::-webkit-scrollbar-thumb {
+            background: var(--neutral-grey);
+            border-radius: 4px;
+        }
+        
+        .partner-card {
+            flex: 0 0 auto;
+            width: 280px;
+            scroll-snap-align: start;
+            background-color: var(--primary-white);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 120px;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .partner-logo {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .partner-logo img {
+            max-height: 100%;
+            max-width: 100%;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        
+        .partner-card:hover .partner-logo img {
+            filter: grayscale(0%);
+        }
+        
+        /* Footer */
+        footer {
+            background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrf-DVXT37JQXZjeKcXVo-eR_I53oqbCjtVZhpkvAldgIjx2fmEZQtb3tcph665Hc5xEOGqUuWOYEOnlos3WyO6IA70gcHUKJ05yos0nbVp6BS1VBnAz-v6TcHWCnwXUjpSPBeZbFavt-j2cQu97XHKNkVfTdqgTQ0zXcHmXTHz6IkFfEBHBf9jwBzR-k/s1920/InShot_20251123_132509285.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--primary-white);
+            padding: 50px 0 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--accent-red);
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-column a {
+            font-size: 14px;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent-red);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+            color: #aaa;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .platform-card, .partner-card {
+                width: 240px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+            
+            nav a {
+                font-size: 13px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .platform-card, .partner-card {
+                width: 220px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">EVERGREEN <span>EMPIRE</span></div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" class="tab-link active" data-tab="about">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/featured-artist/">Featured Artist</a></li>
+                            <li><a href="/labels/">Labels & Content Division</a></li>
+                            <li><a href="/executive/">Executive</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                            <li><a href="/about/">About Us</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="tab-link" data-tab="news">News</a>
+                        <ul class="dropdown">
+                            <li><a href="https://www.evergreenempireltd.com/" target="_blank">EverHub</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="tab-link" data-tab="career">Career</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Creators Portal</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/faq/" class="tab-link" data-tab="faq">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Tab Content Sections -->
+    
+
+    <section id="news" class="tab-content">
+        <div class="container">
+            <ul>
+                <li><a href="https://www.evergreenempireltd.com" target="_blank"><i class="fas fa-external-link-alt"></i> EverHub - Latest News & Updates</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="career" class="tab-content">
+        <div class="container">
+            <ul>
+                <li><a href="#"><i class="fas fa-users"></i> Creators Portal</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="faq" class="tab-content">
+        <div class="container">
+            <ul>
+                <li><a href="/faq/"><i class="fas fa-question-circle"></i> Frequently Asked Questions</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Hero Section with Video Background -->
+    <section class="hero">
+        <video class="video-background" autoplay muted loop playsinline>
+            <source src="https://vinxbbpboupirnyxwghz.supabase.co/storage/v1/object/public/Ever-Music/4932824_Dj_Deejay_1920x1080_2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>REDEFINING THE MUSIC INDUSTRY</h1>
+            <p>Evergreen Empire is a global music and creative powerhouse, built to protect artists, expand their reach, and reward creators.</p>
+            <a href="#" class="cta-button">EXPLORE OUR PLATFORMS</a>
+        </div>
+    </section>
+
+    <!-- Trending Video Section -->
+    <section class="trending-video">
+        <div class="container">
+            <h2 class="section-title">TRENDING VIDEO</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/0Dyvnt6JUyk?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0" 
+                        title="Trending Video" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section class="platforms">
+        <div class="container">
+            <h2 class="section-title">OUR PLATFORMS</h2>
+            <div class="platforms-container">
+                <div class="platform-card">
+                    <a href="https://www.evernet.evergreenempireltd.com/#" target="_blank">
+                        <div class="platform-image">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgy2fbXzfHC-D7GQsDX6aIhXq46opAipiUFVmHkfthb1b-VxKgQPauHK1IjgidKkKYvkaMuwP778G74CjQHBUSYDXk9IkpTjCruEPaayYguJPdBm5F1txAE4m2AWkWpBj_vTFtzdAXFmx6vJ2xtD9N2brTFEB7dbmPkKr-n9Yw4RZwn-lnLBtRnmNdtv3Q/s512/icon-512.png" alt="EverNet">
+                        </div>
+                        <div class="platform-content">
+                            <h3>EverNet</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="platform-card">
+                    <a href="https://www.evergreenempireltd.com" target="_blank">
+                        <div class="platform-image">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiFUI6BR8CjuJ0U557XRx3Y5Qyw6IzoFZdfJRmeXNo7oefP3GXAP0cR63i7fnkKMzlvN2bRs2gVMSDDAljrufNcm2d3dXr5dguzgnOAuY14s1UTFUYYpfMik25LmNUYIBWVL5vWEvQF04BgdmKOmQIPqMJJTronef6DdqlhVhqLOj008_peCaTQuL10CY/s1920/InShot_20251123_122209007.jpg" alt="EverHub">
+                        </div>
+                        <div class="platform-content">
+                            <h3>EverHub</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="container">
+            <h2 class="section-title">OUR PARTNERS</h2>
+            <div class="partners-container">
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiNaUJgFXeqX3S8Umgb0qCK5lzvDSz4-_qZnj3ux5dLjWudRCsrFJNBnGaq3jdjPu0rY9rcqskP_vKy_Lto4AwyzGM0m7Wr4NzzFTZ6FOyeyG67-gtuvDKmIcP-cBNOKTKVPhW_8PU3DYaAV-ACY5iJTkcNpPtFjVosWSQzOHkPVGdyZF2oV__tqhs3LUs/s1920/InShot_20251123_125613793.jpg" alt="Labelcaster">
+                    </div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJo3hHpvnoN1WMvF5ku21TPavTYIE_G7VvLh-jSI29FQ&s=10" alt="Merlin">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:info@evergreenempire.com">info@evergreenempire.com</a></li>
+                        <li><a href="tel:+ ">+1 (234) 567-890</a></li>
+                        <li><a href="#">Global Headquarters</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#"/Privacy Policy</a></li>
+                        <li><a href="/Usage-Policy/">AI & Content Usage Policy</a></li>
+                        <li><a href="/Cookie-Policy/">Cookie Policy</a></li>
+                        <li><a href="/Terms-&-Condition/">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Evergreen Empire. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            // Show About tab by default
+            showTab('about');
+            
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabLinks.forEach(tab => tab.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show selected tab content
+                    showTab(tabId);
+                });
+            });
+            
+            function showTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+            }
+            
+            // Touch swipe functionality for platforms
+            let startX;
+            let scrollLeft;
+            const slider = document.querySelector('.platforms-container');
+            
+            if (slider) {
+                slider.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
+                });
+                
+                slider.addEventListener('touchmove', (e) => {
+                    if (!startX) return;
+                    const x = e.touches[0].pageX - slider.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    slider.scrollLeft = scrollLeft - walk;
+                });
+            }
+            
+            // Touch swipe functionality for partners
+            const partnersSlider = document.querySelector('.partners-container');
+            
+            if (partnersSlider) {
+                partnersSlider.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].pageX - partnersSlider.offsetLeft;
+                    scrollLeft = partnersSlider.scrollLeft;
+                });
+                
+                partnersSlider.addEventListener('touchmove', (e) => {
+                    if (!startX) return;
+                    const x = e.touches[0].pageX - partnersSlider.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    partnersSlider.scrollLeft = scrollLeft - walk;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

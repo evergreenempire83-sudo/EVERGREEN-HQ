@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Evergreen Empire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-black: #000000;
+            --primary-white: #ffffff;
+            --accent-red: #e50914;
+            --neutral-grey: #2a2a2a;
+            --light-grey: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent-red);
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 14px;
+            padding: 6px 0;
+            display: block;
+            cursor: pointer;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--accent-red);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--primary-black);
+            min-width: 180px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+        
+        .dropdown li {
+            margin: 0;
+            padding: 6px 15px;
+        }
+        
+        nav li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* About Hero Section */
+        .about-hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #000000 0%, #2a2a2a 100%);
+            color: var(--primary-white);
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about-hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* About Content Section */
+        .about-content {
+            padding: 80px 0;
+            background-color: var(--primary-white);
+        }
+
+        .about-main {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-main p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .about-main p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Divisions Section */
+        .divisions {
+            padding: 80px 0;
+            background-color: var(--light-grey);
+        }
+
+        .divisions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .division-card {
+            background: var(--primary-white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .division-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .division-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .division-icon i {
+            font-size: 32px;
+            color: var(--primary-white);
+        }
+
+        .division-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-black);
+        }
+
+        .division-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #e50914 0%, #b80710 100%);
+            color: var(--primary-white);
+            text-align: center;
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mission h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .mission p {
+            font-size: 20px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrf-DVXT37JQXZjeKcXVo-eR_I53oqbCjtVZhpkvAldgIjx2fmEZQtb3tcph665Hc5xEOGqUuWOYEOnlos3WyO6IA70gcHUKJ05yos0nbVp6BS1VBnAz-v6TcHWCnwXUjpSPBeZbFavt-j2cQu97XHKNkVfTdqgTQ0zXcHmXTHz6IkFfEBHBf9jwBzR-k/s1920/InShot_20251123_132509285.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--primary-white);
+            padding: 50px 0 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--accent-red);
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-column a {
+            font-size: 14px;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent-red);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+            color: #aaa;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .about-hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-hero p {
+                font-size: 18px;
+            }
+            
+            .about-main p {
+                font-size: 16px;
+            }
+            
+            .divisions-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .mission h2 {
+                font-size: 28px;
+            }
+            
+            .mission p {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+            
+            nav a {
+                font-size: 13px;
+            }
+            
+            .about-hero h1 {
+                font-size: 28px;
+            }
+            
+            .about-hero {
+                padding: 60px 0;
+            }
+            
+            .division-card {
+                padding: 30px 20px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">EVERGREEN <span>EMPIRE</span></div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" class="tab-link active">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/featured-artist/">Featured Artist</a></li>
+                            <li><a href="/labels/">Labels & Content Division</a></li>
+                            <li><a href="/executive/">Executive</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                            <li><a href="/about/">About Us</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="tab-link">News</a>
+                        <ul class="dropdown">
+                            <li><a href="https://www.evergreenempireltd.com/" target="_blank">EverHub</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="tab-link">Career</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Creators Portal</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/faq/" class="tab-link">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About</h1>
+            
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-main">
+                <p>EverGreen Empire is a global music and creative powerhouse, built to protect artists, expand their reach, and reward creators. Every sound, every idea, and every creator matters to us. We are more than a label... we are a creative family shaping the future of music.</p>
+                
+                <p>EverGreen Empire combines vision, innovation, and care, creating a complete ecosystem where artists thrive, creators are rewarded, and music reaches the world.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divisions Section -->
+    <section class="divisions">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 36px; margin-bottom: 20px; color: var(--primary-black);">Our Divisions</h2>
+            <p style="text-align: center; font-size: 18px; color: #666; max-width: 600px; margin: 0 auto 50px;">Specialized platforms working together to support artists and creators</p>
+            
+            <div class="divisions-grid">
+                <div class="division-card">
+                    <div class="division-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>EverHub</h3>
+                    <p>Our media and storytelling division. EverHub shares artist news, label updates, catalog highlights, and connects directly with our community. Stay informed about the latest developments and behind-the-scenes stories from the Empire.</p>
+                </div>
+                
+                <div class="division-card">
+                    <div class="division-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>EverNet</h3>
+                    <p>Our YouTube-focused creator rewards platform. EverNet empowers creators by paying them for premium usage views, giving real value for their creativity. We believe every creator deserves to be compensated for their impact and influence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="container">
+            <div class="mission-content">
+                <h2>Our Mission</h2>
+                <p>To build a sustainable creative ecosystem where artists maintain control, creators receive fair compensation, and music transcends boundaries to inspire global audiences. We're committed to innovation, integrity, and the infinite potential of human creativity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:info@evergreenempire.com">info@evergreenempire.com</a></li>
+                        <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                        <li><a href="#">Global Headquarters</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">AI & Content Usage Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Evergreen Empire. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to division cards
+            const divisionCards = document.querySelectorAll('.division-card');
+            
+            divisionCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

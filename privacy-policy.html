@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Evergreen Empire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-black: #000000;
+            --primary-white: #ffffff;
+            --accent-red: #e50914;
+            --neutral-grey: #2a2a2a;
+            --light-grey: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent-red);
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            font-weight: 500;
+            font-size: 14px;
+            padding: 6px 0;
+            display: block;
+            cursor: pointer;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--accent-red);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--primary-black);
+            min-width: 180px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+        
+        .dropdown li {
+            margin: 0;
+            padding: 6px 15px;
+        }
+        
+        nav li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Policy Hero Section */
+        .policy-hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #000000 0%, #2a2a2a 100%);
+            color: var(--primary-white);
+            text-align: center;
+        }
+
+        .policy-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .policy-hero .effective-date {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .policy-hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Policy Content Section */
+        .policy-content {
+            padding: 80px 0;
+            background-color: var(--primary-white);
+        }
+
+        .policy-main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .policy-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: var(--light-grey);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .policy-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        .section-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-red);
+            color: var(--primary-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-black);
+        }
+
+        .policy-text {
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .policy-text p {
+            margin-bottom: 15px;
+        }
+
+        .policy-text ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .policy-text li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .policy-text li:before {
+            content: "•";
+            color: var(--accent-red);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight-box {
+            background: var(--primary-white);
+            border: 2px solid var(--accent-red);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            font-weight: 600;
+            color: var(--primary-black);
+        }
+
+        .email-link {
+            color: var(--accent-red);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        /* Quick Links Section */
+        .quick-links {
+            padding: 40px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .quick-links h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--primary-black);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .policy-link {
+            background: var(--primary-white);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .policy-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-red);
+        }
+
+        .policy-link a {
+            font-weight: 600;
+            color: var(--primary-black);
+            display: block;
+        }
+
+        /* Quick Contact Section */
+        .quick-contact {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            text-align: center;
+        }
+
+        .quick-contact h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--primary-black);
+        }
+
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-option {
+            background: var(--primary-white);
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-option i {
+            font-size: 40px;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+        }
+
+        .contact-option h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-black);
+        }
+
+        .contact-option p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrf-DVXT37JQXZjeKcXVo-eR_I53oqbCjtVZhpkvAldgIjx2fmEZQtb3tcph665Hc5xEOGqUuWOYEOnlos3WyO6IA70gcHUKJ05yos0nbVp6BS1VBnAz-v6TcHWCnwXUjpSPBeZbFavt-j2cQu97XHKNkVfTdqgTQ0zXcHmXTHz6IkFfEBHBf9jwBzR-k/s1920/InShot_20251123_132509285.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--primary-white);
+            padding: 50px 0 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--accent-red);
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-column a {
+            font-size: 14px;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent-red);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+            color: #aaa;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .policy-hero h1 {
+                font-size: 36px;
+            }
+            
+            .policy-hero p {
+                font-size: 18px;
+            }
+            
+            .policy-section {
+                padding: 20px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .section-header h2 {
+                font-size: 20px;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+            
+            nav a {
+                font-size: 13px;
+            }
+            
+            .policy-hero h1 {
+                font-size: 28px;
+            }
+            
+            .policy-hero {
+                padding: 60px 0;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">EVERGREEN <span>EMPIRE</span></div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" class="tab-link">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/featured-artist/">Featured Artist</a></li>
+                            <li><a href="/labels/">Labels & Content Division</a></li>
+                            <li><a href="/executive/">Executive</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                            <li><a href="/about/">About Us</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="tab-link">News</a>
+                        <ul class="dropdown">
+                            <li><a href="https://www.evergreenempireltd.com/" target="_blank">EverHub</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="tab-link">Career</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Creators Portal</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/faq/" class="tab-link">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Policy Hero Section -->
+    <section class="policy-hero">
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <div class="effective-date">Last updated & effective: November 23rd, 2025</div>
+            <p>This Privacy Policy describes our policies on the collection, use, and disclosure of your information in connection with your use of our websites, online and offline services, and emails ("Site" or "Sites"). EverGreen Empire Ltd ("EverGreen Empire", "we", "us", or "our") respects your privacy and is committed to protecting your personal information.</p>
+        </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links">
+        <div class="container">
+            <h2>Quick Navigation</h2>
+            <div class="links-grid">
+                <div class="policy-link"><a href="#info-collected">Information We Collect</a></div>
+                <div class="policy-link"><a href="#info-use">How We Use Your Information</a></div>
+                <div class="policy-link"><a href="#info-sharing">Sharing Your Information</a></div>
+                <div class="policy-link"><a href="#cookies">Cookies & Tracking</a></div>
+                <div class="policy-link"><a href="#security">Data Security</a></div>
+                <div class="policy-link"><a href="#rights">Your Rights</a></div>
+                <div class="policy-link"><a href="#children">Children's Privacy</a></div>
+                <div class="policy-link"><a href="#updates">Policy Updates</a></div>
+                <div class="policy-link"><a href="#contact">Contact Us</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policy Content Section -->
+    <section class="policy-content">
+        <div class="container">
+            <div class="policy-main">
+                <!-- Section 1 -->
+                <div class="policy-section" id="info-collected">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h2>Information We Collect</h2>
+                    </div>
+                    <div class="policy-text">
+                        <p>We may collect personal and non-personal information when you interact with our Sites, including:</p>
+                        <ul>
+                            <li><strong>Personal information:</strong> name, email, phone number, mailing address</li>
+                            <li><strong>Usage information:</strong> IP address, browser type, operating system, and browsing behavior</li>
+                            <li><strong>Creator/Artist information:</strong> music submissions, account information, payment details</li>
+                        </ul>
+                        <p>When this Privacy Policy uses the term "personal information", we mean information that identifies or can reasonably identify a particular individual, such as full name, street address, telephone number, email address, or other identifiers.</p>
+                        <p>Information collected on the Sites may be used by EverGreen Empire, our labels, agents, subsidiaries, trusted partners, and affiliates acting on our behalf (collectively, "EverGreen Empire") in the manner described below.</p>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Section 2 -->
+                <div class="policy-section" id="info-use">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h2>How We Use Your Information</h2>
+                    </div>
+                    <div class="policy-text">
+                        <p>We use the information we collect to:</p>
+                        <ul>
+                            <li>Provide, maintain, and improve our Sites and services</li>
+                            <li>Process music submissions and Creator/Artist applications</li>
+                            <li>Facilitate payments and royalties for artists and creators</li>
+                            <li>Send updates, newsletters, and marketing communications</li>
+                            <li>Respond to inquiries and support requests</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Section 3 -->
+                <div class="policy-section" id="info-sharing">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h2>Sharing Your Information</h2>
+                    </div>
+                    <div class="policy-text">
+                        <p>We may share your information with:</p>
+                        <ul>
+                            <li>Our trusted service providers and partners who assist in operating the Sites or delivering services</li>
+                            <li>Legal authorities, when required by law</li>
+                            <li>Other affiliates of EverGreen Empire for business and operational purposes</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <p>We never sell your personal information to third parties.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Section 4 -->
+                <div class="policy-section" id="cookies">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h2>Cookies and Tracking Technologies</h2>
+                    </div>
+                    <div class="policy-text">
+                        <p>We use cookies, pixels, and other tracking technologies to:</p>
+                        <ul>
+                            <li>Enhance your experience on our Sites</li>
+                            <li>Measure engagement and performance of content</li>
+                            <li>Deliver targeted communications or marketing</li>
+                        </ul>
+                        <p>You may manage or disable cookies via your browser settings.</p>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Section 5 -->
+                <div class="policy-section" id="security">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h2>Data Security</h2>
+                    </div>
+                    <div class="policy-text">
+                        <p>We implement technical, administrative, and physical safeguards to protect your information from unauthorized access, disclosure, or alteration.</p>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Section 6 -->
+                <div class="policy-section" id="rights">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h2>Your Rights</h2>
+                    </div>
+                    <div class="policy-text">
+                        <p>Depending on your location, you may have rights to:</p>
+                        <ul>
+                            <li>Access, correct, or delete your personal information</li>
+                            <li>Opt-out of marketing communications</li>
+                            <li>Request restrictions on processing of your information</li>
+                        </ul>
+                        <p>To exercise your rights, contact <a href="mailto:support@evergreenempireltd.com" class="email-link">support@evergreenempireltd.com</a>.</p>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Section 7 -->
+                <div class="policy-section" id="children">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h2>Children's Privacy</h2>
+                    </div>
+                    <div class="policy-text">
+                        <p>Our Sites and services are not directed at children under 13. We do not knowingly collect personal information from children under 13.</p>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Section 8 -->
+                <div class="policy-section" id="updates">
+                    <div class="section-header">
+                        <div class="section-number">8</div>
+                        <h2>Updates to Privacy Policy</h2>
+                    </div>
+                    <div class="policy-text">
+                        <p>We may update this Privacy Policy from time to time. The last updated date will always appear at the top. We encourage you to review it periodically.</p>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Section 9 -->
+                <div class="policy-section" id="contact">
+                    <div class="section-header">
+                        <div class="section-number">9</div>
+                        <h2>Contact Us</h2>
+                    </div>
+                    <div class="policy-text">
+                        <p>For questions or concerns about this Privacy Policy, please contact:</p>
+                        <div class="highlight-box">
+                            <p><a href="mailto:support@evergreenempireltd.com" class="email-link">support@evergreenempireltd.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Contact Section -->
+    <section class="quick-contact">
+        <div class="container">
+            <h2>Privacy Questions?</h2>
+            <div class="contact-options">
+                <div class="contact-option">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Data Protection</h4>
+                    <p>Questions about how we protect your information</p>
+                </div>
+                <div class="contact-option">
+                    <i class="fas fa-user-lock"></i>
+                    <h4>Privacy Rights</h4>
+                    <p>Exercise your privacy rights and data access requests</p>
+                </div>
+                <div class="contact-option">
+                    <i class="fas fa-cookie-bite"></i>
+                    <h4>Cookie Preferences</h4>
+                    <p>Manage your cookie and tracking preferences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#" class="active">Privacy Policy</a></li>
+                        <li><a href="/ai-content-policy/">AI & Content Usage Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:info@evergreenempire.com">info@evergreenempire.com</a></li>
+                        <li><a href="mailto:support@evergreenempireltd.com">support@evergreenempireltd.com</a></li>
+                        <li><a href="tel:+2349126236255">+234 912 623 6255</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Evergreen Empire. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Email link tracking
+            const emailLinks = document.querySelectorAll('.email-link');
+            
+            emailLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // You can add analytics tracking here
+                    console.log('Privacy policy email link clicked:', this.href);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
